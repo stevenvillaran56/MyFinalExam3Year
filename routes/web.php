@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CrudController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get( '/' , [CrudController::class , 'show'])->name('home');
+Route::get( '/create' , [CrudController::class , 'create'])->name('create.user');
+Route::post('/store' , [CrudController::class , 'store'])->name('store.user');
+Route::post( '/edit/{id}' , [CrudController::class , 'edit'])->name('edit.user');
+Route::post('/update/{id}' , [CrudController::class , 'update'])->name('update.user');
+Route::delete('/delete/{id}' , [CrudController::class , 'destroy'])->name('delete.user');
